@@ -1,4 +1,4 @@
-package main.webapp.mysql;
+package mysql;
 
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
@@ -15,7 +15,7 @@ public class JDBCDruidUtils {
     static {
         Properties properties = new Properties();
         try {
-            properties.load(JDBCTemplateDemo.class.getClassLoader().getResourceAsStream("main/druid.properties"));
+            properties.load(JDBCTemplateDemo.class.getClassLoader().getResourceAsStream("druid.properties"));
             ds = DruidDataSourceFactory.createDataSource(properties);
         } catch (IOException e) {
             e.printStackTrace();

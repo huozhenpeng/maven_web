@@ -1,4 +1,4 @@
-package main.webapp.login;
+package login;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

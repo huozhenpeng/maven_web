@@ -1,4 +1,4 @@
-package main.webapp.mysql;
+package mysql;
 
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
@@ -37,7 +37,7 @@ public class MySqlDemo1 {
     public static void secondDemo() throws Exception {
         Properties properties = new Properties();
         System.out.println(MySqlDemo1.class.getClassLoader().getResource("./").getPath());
-        InputStream inputStream = MySqlDemo1.class.getClassLoader().getResourceAsStream("main/druid.properties");
+        InputStream inputStream = MySqlDemo1.class.getClassLoader().getResourceAsStream("druid.properties");
         try {
             properties.load(inputStream);
         } catch (IOException e) {

@@ -1,6 +1,6 @@
-package main.webapp.login;
+package login;
 
-import main.webapp.mysql.JDBCDruidUtils;
+import mysql.JDBCDruidUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

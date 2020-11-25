@@ -1,4 +1,4 @@
-package main.webapp.mysql;
+package mysql;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class JDBCUtils {
     static {
         Properties properties = new Properties();
         ClassLoader classLoader = JDBCUtils.class.getClassLoader();
-        URL res = classLoader.getResource("main/jdbc.properties");
+        URL res = classLoader.getResource("jdbc.properties");
         System.out.println("res path -->"+res.getPath().toString());
         try {
             properties.load(new FileReader(res.getPath()));

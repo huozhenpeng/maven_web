@@ -1,4 +1,4 @@
-package main.webapp.mysql;
+package mysql;
 
 import org.junit.Before;
 import org.junit.Test;

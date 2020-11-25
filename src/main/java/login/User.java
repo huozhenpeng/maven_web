@@ -1,4 +1,4 @@
-package main.webapp.login;
+package login;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package main.webapp.mysql;
+package mysql;
 
 public class Person {
     public Person() {

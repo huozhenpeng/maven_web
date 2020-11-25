@@ -1,4 +1,4 @@
-package main.webapp.redirect;
+package redirect;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 @WebServlet(urlPatterns = "/redirect01")
 public class RedirectServlet01 extends HttpServlet {
     @Override
