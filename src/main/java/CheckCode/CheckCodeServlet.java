@@ -31,11 +31,14 @@ public class CheckCodeServlet extends HttpServlet {
         graphics.drawRect(0, 0, width - 1, height - 1);
         String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789";
         Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < 4; i++) {
             int index = random.nextInt(str.length());
             char ch = str.charAt(index);
+            stringBuilder.append(ch);
             graphics.drawString(String.valueOf(ch), width / 5 * i, height / 2);
         }
+        req.getSession().setAttribute("checkCode", stringBuilder.toString());
 
         graphics.setColor(Color.GREEN);
         for (int i = 0; i < 10; i ++) {

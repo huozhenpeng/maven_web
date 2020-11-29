@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,6 +45,7 @@ public class CookieTest extends HttpServlet {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日HH:mm:ss");
         String value = simpleDateFormat.format(new Date());
         Cookie cookie = new Cookie("LastTime", value);
+        //cookie中如果涉及到中文乱码问题可以使用URLEncoder进行编解码再使用
         resp.addCookie(cookie);
 
         for (int i = 0; i < cookies.length; i++) {
