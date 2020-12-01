@@ -16,12 +16,12 @@ public class UserDao {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User user = new User();
-                user.setUserName(resultSet.getString("username"));
-                user.setPassWord(resultSet.getString("password"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
                 user.setAddress(resultSet.getString("address"));
                 return user;
             }
-        }, user.getUserName(), user.getPassWord());
+        }, user.getUsername(), user.getPassword());
         if (list != null && list.size() > 0) {
             return list.get(0);
         }

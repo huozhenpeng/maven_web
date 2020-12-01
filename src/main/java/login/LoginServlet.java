@@ -20,8 +20,8 @@ public class LoginServlet extends HttpServlet {
         String userName = req.getParameter("username");
         String passWord = req.getParameter("password");
         User user = new User();
-        user.setUserName(userName);
-        user.setPassWord(passWord);
+        user.setUsername(userName);
+        user.setPassword(passWord);
 
         UserDao userDao = new UserDao();
         User result = userDao.login(user);

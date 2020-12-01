@@ -1,18 +1,21 @@
-package login;
+package domain;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class Student implements Serializable {
     private String username;
     private String password;
     private String address;
 
-    public User(){}
-
-    public User(String username, String password, String address) {
+    public Student(String username, String password, String address) {
         this.username = username;
         this.password = password;
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 
     public String getUsername() {
