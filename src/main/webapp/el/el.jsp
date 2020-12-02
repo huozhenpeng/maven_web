@@ -63,7 +63,7 @@
 
     <%
         User user = new User();
-        user.setUserName("david");
+        user.setUsername("david");
         user.setAddress("北京");
         request.setAttribute("u", user);
 
