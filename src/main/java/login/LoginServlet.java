@@ -29,8 +29,20 @@ public class LoginServlet extends HttpServlet {
             //登陆失败
             req.getRequestDispatcher("/failedServlet").forward(req, resp);
         } else {
-            req.setAttribute("user", result);
-            req.getRequestDispatcher("/successServlet").forward(req,resp);
+            req.getSession().setAttribute("user", result);
+            String referer = req.getHeader("Referer");
+            System.out.println("referer:"+referer);
+            if (referer != null) {
+                String [] arrays = referer.split(req.getContextPath());
+                referer = arrays[1];
+            }
+            if (referer != null) {
+//                req.getRequestDispatcher(referer).forward(req,resp);
+                resp.sendRedirect(req.getContextPath() + referer);
+            } else {
+                req.getRequestDispatcher("/successServlet").forward(req,resp);
+            }
+
         }
 
     }
