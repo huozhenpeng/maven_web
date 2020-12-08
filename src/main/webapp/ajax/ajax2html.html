@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--    不要写成这样的<script  src="../js/jquery-3.5.1.js"/>-->
+    <script  src="../js/jquery-3.5.1.js">
+
+    </script>
+
+    <script>
+        console.log("111");
+        demo1 = function() {
+            $.ajax({
+                url:"/Web_Maven_war_exploded/ajaxServlet",
+                type:"POST",
+                data:{
+                    "username":"张三",
+                    "age":20
+                },
+                success:function (data) {
+                    alert(data);
+                },
+                error:function () {
+                    alert("出错了。。。");
+                },
+                dataType:"text"//设置接收到的响应数据格式
+            });
+        }
+
+
+        demo2 = function() {
+            $.get("/Web_Maven_war_exploded/ajaxServlet",
+                {
+                    "username":"张三",
+                    "age":20
+                },
+                function (data) {
+                    alert(data);
+                },
+                "text"
+            )
+        }
+
+        demo3 = function() {
+            $.post("/Web_Maven_war_exploded/ajaxServlet",
+                {
+                    "username":"李四",
+                    "age":20
+                },
+                function (data) {
+                    alert(data);
+                },
+                "text"
+            )
+        }
+    </script>
+</head>
+<body>
+
+
+
+    <input type="button" value="测试" onclick="demo3();"/>
+
+</body>
+</html>

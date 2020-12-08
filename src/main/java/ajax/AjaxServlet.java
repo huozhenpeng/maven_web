@@ -17,4 +17,9 @@ public class AjaxServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         resp.getWriter().write("获取到的名字是:"+userName);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req, resp);
+    }
 }
