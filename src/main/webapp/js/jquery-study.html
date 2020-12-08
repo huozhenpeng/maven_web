@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.5.1.js"></script>
+</head>
+<body>
+    <div id="div1"> div1...</div>
+    <div id="div2"> div2...</div>
+
+    <input type="button" value="点击" id="button">
+
+    <script>
+        //js方式
+        const divs = document.getElementsByTagName("div");
+        //divs可以看做数组
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].innerHTML = "ccc";
+        }
+
+        //jquery方式 一般定义jquery变量的时候前面会加个$，代表这是jquery变量
+        const $jqDivs = $("div");
+        $jqDivs.html("bbb");//所有的变成bbb
+
+        //JQuery对象和js对象方法不通用的.
+        //两者相互转换
+        //jq -- > js : jq对象[索引] 或者 jq对象.get(索引)
+        //js -- > jq : $(js对象)
+        //$jqDivs[0]获取到的是个dom对象，不是jquery对象，不能用.html赋值
+        $jqDivs[0].innerHTML = "ddd";
+        $jqDivs.get(1).innerHTML = "eee";
+
+
+        //操作点击事件
+        //网页加载的时候就绑定监听事件
+        // window.onload = function () {
+        //     $("#button").click(function () {
+        //         alert("点击了")
+        //     });
+        // };
+
+        //jquery实现
+        $(function () {
+            $("#button").click(function () {
+                alert("jquery点击了")
+            });
+        });
+
+        $(function () {
+            $("#div1").css("backgroundColor", "pink");
+        });
+
+        // window.onload  和 $(function) 区别
+        // window.onload 只能定义一次,如果定义多次，后边的会将前边的覆盖掉
+        // $(function)可以定义多次的。
+
+    </script>
+
+
+
+</body>
+</html>

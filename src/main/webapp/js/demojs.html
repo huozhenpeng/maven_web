@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="customer-jquery.js"></script>
+</head>
+<body>
+
+    <div id="div1"> div1... </div>
+    <div id="div2"> div2... </div>
+
+    <script>
+        //js方式
+        const var1 = document.getElementById("div1");
+        const var2 = document.getElementById("div2");
+        alert(var1.innerHTML);
+        alert(var2.innerHTML);
+        //自定义的jquery方式
+        const  j1 = $("div1");
+        const  j2 = $("div2");
+        alert(j1.innerHTML);
+        alert(j2.innerHTML);
+    </script>
+
+</body>
+</html>
