@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+    <script>
+        console.log("333");
+        function fun() {
+            console.log("222");
+            //用普通的XMLHttpRequest演示网络请求
+            //https://www.runoob.com/xml/xml-http.html
+            //所有现代浏览器（IE7+、Firefox、Chrome、Safari 和 Opera）都有内建的 XMLHttpRequest 对象。
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest();
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            console.log("111");
+            //true异步，false同步
+            xmlhttp.open("GET", "/Web_Maven_war_exploded/ajaxServlet?username=tom", true);
+            //发送请求
+            xmlhttp.send();
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var responseText = xmlhttp.responseText;
+                    alert(responseText);
+                }
+            }
+        }
+
+    </script>
+
+    <input type="button" value="点击" onclick="fun();">
+
+</body>
+</html>

@@ -3,7 +3,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class ShopCarFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -22,6 +22,7 @@ public class ShopCarFilter implements Filter {
                 || uri.contains("/css/")
                 || uri.contains("/js/")
                 || uri.contains("/fonts/")
+                || uri.contains("/ajax/")
                 || uri.contains("/checkCodeServlet")) {
             //放行
             chain.doFilter(request, response);
