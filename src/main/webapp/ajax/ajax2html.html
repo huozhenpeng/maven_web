@@ -44,7 +44,8 @@
         }
 
         demo3 = function() {
-            $.post("/Web_Maven_war_exploded/ajaxServlet",
+            $.post(
+                "/Web_Maven_war_exploded/ajaxServlet",
                 {
                     "username":"李四",
                     "age":20
@@ -55,13 +56,54 @@
                 "text"
             )
         }
+
+        //页面加载完成后注册
+        $(function () {
+            $("#name").blur(function () {
+                console.log("blur");
+                //获取文本输入框的值
+                var username = $(this).val();
+
+                var span = $("#t_username");
+                //发送ajax请求
+                //期望服务器响应回的数据格式：
+                // {"userExist":true,"msg":"此用户名太受欢迎,请更换一个"}
+                // {"userExist":false,"msg":"用户名可用"}
+                $.get(
+                    "/Web_Maven_war_exploded/ajaxJsonServlet",
+                    {
+                        "username" : username,
+                    },
+                    function (data) {
+                        if (data.userExist) {
+                            //用户名已经存在
+                            span.css("color", "red");
+                            span.html(data.msg);
+                        } else {
+                            span.css("color", "green");
+                            span.html(data.msg);
+                        }
+                    }
+                );
+            });
+        });
+
     </script>
 </head>
 <body>
 
 
 
-    <input type="button" value="测试" onclick="demo3();"/>
+    <input type="button" value="测试" onclick="demo3();"/> <br/>
+
+    <input type="text" id="name" name="username" placeholder="请输入用户名"><br/>
+    <span id="t_username"></span><br/>
+
+    <input type="password" id="pw" name="password" placeholder="密码"><br/>
+
+    <input type="submit" value="提交">
+
+
 
 </body>
 </html>
