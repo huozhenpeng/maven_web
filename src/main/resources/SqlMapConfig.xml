@@ -18,6 +18,9 @@
 
     <mappers>
         <mapper resource="mybatis/IAccountDao.xml"></mapper>
+
+        <!--演示注解方式 注意这儿是class-->
+        <mapper class="mybatis.annotation.IAnnotationAccountDao"></mapper>
     </mappers>
 
 </configuration>

@@ -1,5 +1,6 @@
 package mybatis;
 
+import mybatis.annotation.IAnnotationAccountDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,6 +21,23 @@ public class MyBatisTest {
             SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
             SqlSession sqlSession = sqlSessionFactory.openSession();
             IAccountDao accountDao = sqlSession.getMapper(IAccountDao.class);
+            List<Account> accounts = accountDao.findAll();
+            for (int i = 0; i < accounts.size(); i++) {
+                System.out.println(accounts.get(i).toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testAnnotation() {
+        try {
+            InputStream inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
+            SqlSession sqlSession = sqlSessionFactory.openSession();
+            IAnnotationAccountDao accountDao = sqlSession.getMapper(IAnnotationAccountDao.class);
             List<Account> accounts = accountDao.findAll();
             for (int i = 0; i < accounts.size(); i++) {
                 System.out.println(accounts.get(i).toString());
