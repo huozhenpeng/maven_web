@@ -3,26 +3,26 @@ package mybatis;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-    private int id;
-    private double balance;
-    private String username;
-    private int age;
-    private String address;
-    private String password;
+    public Long id;//自定义mybatis中，id获取到的类型是Long ，不知道为啥
+    public Integer balance;
+    public String username;
+    public Integer age;
+    public String address;
+    public String password;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public double getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Integer balance) {
         this.balance = balance;
     }
 
@@ -34,11 +34,11 @@ public class Account implements Serializable {
         this.username = username;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
