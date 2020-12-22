@@ -8,4 +8,14 @@
         select * from account
     </select>
 
+    <select id="findById" resultType="mybatis.Account" parameterType="int">
+        select * from account where id = #{id}
+    </select>
+
+<!--    注意标签别写错了 insert-->
+    <insert id="saveAccount" parameterType="mybatis.Account" >
+        insert into account (balance, username, age, address, password)
+        values (#{balance}, #{username}, #{age}, #{address}, #{password})
+    </insert>
+
 </mapper>
