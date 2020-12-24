@@ -1,7 +1,7 @@
 package mybatis.custom;
 
 
-import mybatis.Account;
+import mybatis.domain.Account;
 import mybatis.IAccountDao;
 
 import java.io.InputStream;

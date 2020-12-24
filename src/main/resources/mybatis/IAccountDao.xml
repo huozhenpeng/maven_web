@@ -4,18 +4,58 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.IAccountDao">
 
-    <select id="findAll" resultType="mybatis.Account">
+    <resultMap id="accountMap" type="mybatis.domain.Account2">
+        <!--主键字段-->
+        <id property="userId" column="id"/>
+        <!--非主键字段-->
+        <result property="userName" column="username"/>
+        <result property="userAge" column="age"/>
+        <result property="userBalance" column="balance"/>
+        <result property="userPassword" column="password"/>
+    </resultMap>
+
+    <select id="findAll" resultType="mybatis.domain.Account" >
         select * from account
     </select>
 
-    <select id="findById" resultType="mybatis.Account" parameterType="int">
+    <select id="findAllMap" resultMap="accountMap" >
+        select * from account
+    </select>
+
+    <select id="findById" resultType="mybatis.domain.Account" parameterType="int">
         select * from account where id = #{id}
     </select>
 
 <!--    注意标签别写错了 insert-->
-    <insert id="saveAccount" parameterType="mybatis.Account" >
+    <insert id="saveAccount" parameterType="mybatis.domain.Account" >
         insert into account (balance, username, age, address, password)
         values (#{balance}, #{username}, #{age}, #{address}, #{password})
     </insert>
+
+    <!--    注意标签别写错了 insert-->
+    <insert id="testSaveAccount_getId" parameterType="mybatis.domain.Account" >
+        <selectKey keyColumn="id" keyProperty="id" resultType="Long" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into account (balance, username, age, address, password)
+        values (#{balance}, #{username}, #{age}, #{address}, #{password})
+    </insert>
+
+    <update id="testUpdate" parameterType="mybatis.domain.Account">
+        update account set balance = #{balance}, age = ${age} where id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="int" >
+        <!--userId这个值随便写，写啥都行，感觉就相当于个形参-->
+        delete from account where id = ${userId}
+    </delete>
+
+    <select id="findTotal" resultType="int">
+        select count(id) from account;
+    </select>
+    
+    <select id="findByVo" parameterType="mybatis.domain.QueryVo" resultType="mybatis.domain.Account">
+        select * from account where username like ${account.username}
+    </select>
 
 </mapper>

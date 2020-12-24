@@ -1,6 +1,6 @@
 package mybatis.annotation;
 
-import mybatis.Account;
+import mybatis.domain.Account;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
