@@ -53,4 +53,14 @@ public interface IAccountDao {
      * @return
      */
     List<Account2> findAllMap();
+
+    /**
+     *
+     * @param account
+     */
+    List<Account> selectByDynamicIf(Account account);
+
+    List<Account> selectByDynamicWhere(Account account);
+
+    List<Account> queryByIn(QueryVo queryVo);
 }

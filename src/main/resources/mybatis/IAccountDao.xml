@@ -55,7 +55,54 @@
     </select>
     
     <select id="findByVo" parameterType="mybatis.domain.QueryVo" resultType="mybatis.domain.Account">
-        select * from account where username like ${account.username}
+        select * from account where username like #{account.username}
     </select>
+
+    <select id="selectByDynamicIf" parameterType="mybatis.domain.Account" resultType="mybatis.domain.Account">
+        select * from account where 1 = 1
+        <if test="username != null and username != ''">
+            and username like #{username}
+        </if>
+        <if test="address != null and address != ''">
+            and address like #{address}
+        </if>
+
+    </select>
+
+
+    <!-- 抽取重复sql -->
+    <sql id="defaultAccount">
+        select * from account
+    </sql>
+    <!-- where可以不用写1=1 -->
+    <select id="selectByDynamicWhere" parameterType="mybatis.domain.Account" resultType="mybatis.domain.Account">
+        <include refid="defaultAccount"></include>
+        <where>
+            <if test="username != null and username != ''">
+                and username like #{username}
+            </if>
+            <if test="address != null and address != ''">
+                and address like #{address}
+            </if>
+        </where>
+    </select>
+    <!--    查询所有用户，id在ids中 -->
+    <!--    collection:代表要遍历的集合元素，注意编写时不要写#{} -->
+    <!--    open:代表语句的开始部分-->
+    <!--    close:代表结束部分-->
+    <!--    item:代表遍历集合的每个元素，生成的变量名-->
+    <!--    sperator:代表分隔符-->
+    <select id="queryByIn" resultType="mybatis.domain.Account" parameterType="mybatis.domain.QueryVo">
+        <!--	select * from user where id in (1,2,3,4,5); -->
+        <include refid="defaultAccount"></include>
+        <where>
+            <if test="ids != null and ids.size() > 0">
+                <foreach collection="ids" open="id in ( " close=")" item="uid" separator=",">
+                    #{uid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
 
 </mapper>
