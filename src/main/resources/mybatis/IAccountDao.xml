@@ -109,5 +109,23 @@
     </select>
 
 
+    <resultMap id="orderMap" type="mybatis.domain.Account2">
+        <id column="id" property="userId"/>
+        <result property="userName" column="username"/>
+        <result property="userAge" column="age"/>
+        <result property="userBalance" column="balance"/>
+        <result property="userPassword" column="password"/>
+        <association property="order" javaType="mybatis.domain.Order">
+            <id column="id" property="goods_id"/>
+            <result column="goods_name" property="goods_name"/>
+        </association>
+    </resultMap>
+
+
+
+    <select id="selectMultipleTable2" resultMap="orderMap">
+        select a.*, g.goods_name from account a, goods_order g where a.goods_id = g.id;
+    </select>
+
 
 </mapper>

@@ -80,4 +80,10 @@ public interface IAccountDao {
      *
      */
     List<AccountOrder> selectMultipleTable();
+
+    /**
+     *
+     * @return
+     */
+    Account2 selectMultipleTable2();
 }

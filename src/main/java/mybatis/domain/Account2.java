@@ -9,6 +9,24 @@ public class Account2 implements Serializable {
     private String userAge;
     private String address;
     private String userBalance;
+    private Integer goods_id;
+
+    //第二种方式
+    private Order order;
+    public Order getOrder() {
+        return order;
+    }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Integer getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(Integer goods_id) {
+        this.goods_id = goods_id;
+    }
 
     public String getUserId() {
         return userId;
@@ -67,6 +85,8 @@ public class Account2 implements Serializable {
                 ", userAge='" + userAge + '\'' +
                 ", address='" + address + '\'' +
                 ", userBalance='" + userBalance + '\'' +
+                ", goods_id=" + goods_id +
+                ", order=" + order +
                 '}';
     }
 }

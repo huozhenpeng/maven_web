@@ -200,10 +200,10 @@ public class MyBatisTest {
         }
     }
 
-
     @Test
     public void testMultipleTableMap() {
-
+        Account2 account2 = accountDao.selectMultipleTable2();
+        System.out.println(account2.toString());
     }
 
 
