@@ -2,6 +2,7 @@ package mybatis;
 
 import mybatis.domain.Account;
 import mybatis.domain.Account2;
+import mybatis.domain.AccountOrder;
 import mybatis.domain.QueryVo;
 
 import java.util.List;
@@ -60,7 +61,23 @@ public interface IAccountDao {
      */
     List<Account> selectByDynamicIf(Account account);
 
+    /**
+     *
+     * @param account
+     * @return
+     */
     List<Account> selectByDynamicWhere(Account account);
 
+    /**
+     *
+     * @param queryVo
+     * @return
+     */
     List<Account> queryByIn(QueryVo queryVo);
+
+
+    /**
+     *
+     */
+    List<AccountOrder> selectMultipleTable();
 }

@@ -3,6 +3,7 @@ package mybatis;
 import mybatis.annotation.IAnnotationAccountDao;
 import mybatis.domain.Account;
 import mybatis.domain.Account2;
+import mybatis.domain.AccountOrder;
 import mybatis.domain.QueryVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -181,5 +182,50 @@ public class MyBatisTest {
             System.out.println(accounts.get(i));
         }
     }
+
+
+    /**
+     * 用户表account   订单表goods_order
+     * 查询所有订单信息，关联查询订单关联的用户信息
+     *
+     *  一对一、多对一
+     *  因为一个订单只能属于某个用户，所以从查询订单信息出发查询所属的用户信息为一对一查询
+     *  如果从用户信息触发查询用户下的订单则为一对多查询，因为一个用户可以有多个订单
+     */
+    @Test
+    public void testMultipleTable() {
+        List<AccountOrder> accounts = accountDao.selectMultipleTable();
+        for (int i = 0; i < accounts.size(); i++) {
+            System.out.println(accounts.get(i));
+        }
+    }
+
+
+    @Test
+    public void testMultipleTableMap() {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -104,5 +104,10 @@
         </where>
     </select>
 
+    <select id="selectMultipleTable" resultType="mybatis.domain.AccountOrder">
+        select a.*, g.goods_name from account a, goods_order g where a.goods_id = g.id;
+    </select>
+
+
 
 </mapper>

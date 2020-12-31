@@ -9,6 +9,15 @@ public class Account implements Serializable {
     public Integer age;
     public String address;
     public String password;
+    public Integer goods_id;
+
+    public Integer getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(Integer goods_id) {
+        this.goods_id = goods_id;
+    }
 
     public Long getId() {
         return id;
