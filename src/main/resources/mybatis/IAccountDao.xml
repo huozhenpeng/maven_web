@@ -128,4 +128,26 @@
     </select>
 
 
+    <resultMap id="orderMap2" type="mybatis.domain.Order2">
+        <id column="id" property="goods_id"/>
+        <result column="goods_name" property="goods_name"/>
+        
+        <collection property="accounts" ofType="mybatis.domain.Account">
+            <id column="id" property="id"/>
+            <result column="balance" property="balance"/>
+            <result column="username" property="username"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectMultipleTableO2M" resultMap="orderMap2">
+        select a.*,g.id as gid,g.goods_name from account a left outer join goods_order g on a.goods_id = g.id
+
+    </select>
+
+
+
+
+
+
+
 </mapper>

@@ -1,10 +1,7 @@
 package mybatis;
 
 import mybatis.annotation.IAnnotationAccountDao;
-import mybatis.domain.Account;
-import mybatis.domain.Account2;
-import mybatis.domain.AccountOrder;
-import mybatis.domain.QueryVo;
+import mybatis.domain.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -204,6 +201,17 @@ public class MyBatisTest {
     public void testMultipleTableMap() {
         Account2 account2 = accountDao.selectMultipleTable2();
         System.out.println(account2.toString());
+    }
+
+    /**
+     * 一对多
+     * 查询所有用户信息以及关联的订单信息
+     * O2M 一对多
+     */
+    @Test
+    public void testMultipleTableO2M() {
+        Order2 order = accountDao.selectMultipleTableO2M();
+        System.out.println(order.toString());
     }
 
 

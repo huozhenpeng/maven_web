@@ -1,9 +1,6 @@
 package mybatis;
 
-import mybatis.domain.Account;
-import mybatis.domain.Account2;
-import mybatis.domain.AccountOrder;
-import mybatis.domain.QueryVo;
+import mybatis.domain.*;
 
 import java.util.List;
 
@@ -86,4 +83,9 @@ public interface IAccountDao {
      * @return
      */
     Account2 selectMultipleTable2();
+
+    /**
+     *
+     */
+    Order2 selectMultipleTableO2M();
 }
