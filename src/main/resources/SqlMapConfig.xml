@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="logImpl" value="LOG4J" />
+    </settings>
+
     <!--使用typeAliases配置别名，它只能配置实体类的别名-->
     <!--放下面编译还报错-->
     <typeAliases>

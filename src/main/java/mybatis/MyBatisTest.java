@@ -222,9 +222,9 @@ public class MyBatisTest {
     @Test
     public void testMultipleTableM2M() {
         List<Role> roles = accountDao.selectMultipleTableM2M();
-        for (int i = 0; i < roles.size(); i++) {
-            System.out.println(roles.get(i));
-        }
+//        for (int i = 0; i < roles.size(); i++) {
+//            System.out.println(roles.get(i));
+//        }
     }
 
 }
