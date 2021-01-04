@@ -145,6 +145,34 @@
     </select>
 
 
+    <resultMap id="roleMap" type="mybatis.domain.Role">
+        <id column="rid" property="rid"/>
+        <result column="userid" property="userid"/>
+        <result column="role_name" property="role_name"/>
+        <collection property="users" ofType="mybatis.domain.User">
+            <id column="id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="address" property="address"/>
+            <result column="sex" property="sex"/>
+            <result column="birthday" property="birthday"/>
+            <result column="address" property="address"/>
+        </collection>
+    </resultMap>
+
+
+    <!--这里用了as对列进行重命名后，上面的映射中的column也要修改-->
+    <select id="selectMultipleTableM2M" resultMap="roleMap">
+        select u.*, r.role_name, r.userid, r.id as rid from role1 r
+        left outer join user_role ur on r.userid = ur.user_number
+        left outer join user u on u.roleid = ur.role_number
+    </select>
+
+
+
+
+    
+
+
 
 
 

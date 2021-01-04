@@ -88,4 +88,9 @@ public interface IAccountDao {
      *
      */
     Order2 selectMultipleTableO2M();
+
+    /**
+     *
+     */
+    List<Role> selectMultipleTableM2M();
 }

@@ -214,26 +214,17 @@ public class MyBatisTest {
         System.out.println(order.toString());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 多对多查询，借助第三张表
+     * https://segmentfault.com/a/1190000017369618
+     * 实现Role到User的多对多
+     */
+    @Test
+    public void testMultipleTableM2M() {
+        List<Role> roles = accountDao.selectMultipleTableM2M();
+        for (int i = 0; i < roles.size(); i++) {
+            System.out.println(roles.get(i));
+        }
+    }
 
 }
