@@ -197,11 +197,16 @@ public class MyBatisTest {
         }
     }
 
+    /**
+     * 从查询订单出发，只能查到一个用户
+     */
     @Test
     public void testMultipleTableMap() {
         Account2 account2 = accountDao.selectMultipleTable2();
         System.out.println(account2.toString());
     }
+
+
 
     /**
      * 一对多
@@ -210,8 +215,10 @@ public class MyBatisTest {
      */
     @Test
     public void testMultipleTableO2M() {
-        Order2 order = accountDao.selectMultipleTableO2M();
-        System.out.println(order.toString());
+        List<Account3> accounts = accountDao.selectMultipleTableO2M();
+        for (int i = 0; i < accounts.size(); i++) {
+            System.out.println(accounts.get(i));
+        }
     }
 
     /**
@@ -225,6 +232,16 @@ public class MyBatisTest {
 //        for (int i = 0; i < roles.size(); i++) {
 //            System.out.println(roles.get(i));
 //        }
+    }
+
+    /**
+     * 延迟加载
+     * 用户表account   订单表goods_order
+     * 查询所有订单信息，关联查询订单关联的用户信息
+     */
+    @Test
+    public void testDelayFindAll() {
+        List<Account2> list = accountDao.selectDelayFindAll();
     }
 
 }

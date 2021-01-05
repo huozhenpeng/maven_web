@@ -105,7 +105,7 @@
     </select>
 
     <select id="selectMultipleTable" resultType="mybatis.domain.AccountOrder">
-        select a.*, g.goods_name from account a, goods_order g where a.goods_id = g.id;
+        select a.*, g.goods_name from account a, goods_order g where a.id = g.userid;
     </select>
 
 
@@ -124,23 +124,26 @@
 
 
     <select id="selectMultipleTable2" resultMap="orderMap">
-        select a.*, g.goods_name from account a, goods_order g where a.goods_id = g.id;
+        select a.*, g.goods_name from account a, goods_order g where a.id = g.userid;
     </select>
 
 
-    <resultMap id="orderMap2" type="mybatis.domain.Order2">
-        <id column="id" property="goods_id"/>
-        <result column="goods_name" property="goods_name"/>
-        
-        <collection property="accounts" ofType="mybatis.domain.Account">
-            <id column="id" property="id"/>
-            <result column="balance" property="balance"/>
-            <result column="username" property="username"/>
+    <resultMap id="orderMap2" type="mybatis.domain.Account3">
+        <id column="id" property="userId"/>
+        <result property="userName" column="username"/>
+        <result property="userAge" column="age"/>
+        <result property="userBalance" column="balance"/>
+        <result property="userPassword" column="password"/>
+        <result property="address" column="address"/>
+
+        <collection property="orders" ofType="mybatis.domain.Order">
+            <id column="gid" property="goods_id"/>
+            <result column="goods_name" property="goods_name"/>
         </collection>
     </resultMap>
 
     <select id="selectMultipleTableO2M" resultMap="orderMap2">
-        select a.*,g.id as gid,g.goods_name from account a left outer join goods_order g on a.goods_id = g.id
+        select a.*,g.id as gid,g.goods_name from account a left outer join goods_order g on a.id = g.userid
 
     </select>
 
@@ -166,16 +169,6 @@
         left outer join user_role ur on r.userid = ur.user_number
         left outer join user u on u.roleid = ur.role_number
     </select>
-
-
-
-
-    
-
-
-
-
-
 
 
 </mapper>

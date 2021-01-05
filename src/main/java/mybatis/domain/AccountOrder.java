@@ -24,7 +24,6 @@ public class AccountOrder extends Account {
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 ", password='" + password + '\'' +
-                ", goods_id=" + goods_id +
                 '}';
     }
 }
