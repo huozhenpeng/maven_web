@@ -102,4 +102,6 @@ public interface IAccountDao {
 
 
     List<Order> selectOrderByUserId(int id);
+
+    Account findCacheById(int id);
 }

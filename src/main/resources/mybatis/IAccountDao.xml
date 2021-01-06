@@ -203,6 +203,11 @@
     </select>
 
 
+    <select id="findCacheById" resultType="mybatis.domain.Account" parameterType="int">
+        select * from account where id = #{id}
+    </select>
+
+
 
 
 </mapper>

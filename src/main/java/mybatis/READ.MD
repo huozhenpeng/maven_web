@@ -22,3 +22,14 @@ sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 myba
 信息时才需要查询第二张表，如果只是展示账户信息，那么就没有必要查询订单表，这就是延迟加载。
 
 * association、collection 具备延迟加载功能
+
+
+#####3、mybatis缓存
+* 一级缓存：一级缓存是 SqlSession 级别的缓存，只要 SqlSession 没有 flush 或 close，它就存在。
+* 二级缓存：二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个
+       SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。
+* 一级缓存应该是无法控制是否生效的，二级缓存可以控制
+
+
+
+

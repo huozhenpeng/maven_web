@@ -258,4 +258,37 @@ public class MyBatisTest {
         }
     }
 
+    /**
+     * 一级缓存
+     * SqlSession级别的
+     */
+    @Test
+    public void testCache01() {
+        Account account = accountDao.findCacheById(1);
+        System.out.println(account);
+        Account account2 = accountDao.findCacheById(1);
+        System.out.println(account2);
+    }
+
+    /**
+     * 一级缓存
+     * SqlSession级别的
+     * SqlSession 去执行 commit 操作（执行插入、更新、删除），会清空 SqlSession 中的一级缓存，这样
+     * 做的目的为了让缓存中存储的是最新的信息，避免脏读。
+     */
+    @Test
+    public void testCache011() {
+        Account account = accountDao.findCacheById(1);
+        System.out.println(account);
+        //可以清空sqlsession中的缓存
+        sqlSession.clearCache();
+        Account account2 = accountDao.findCacheById(1);
+        System.out.println(account2);
+
+        //accountDao也可以这样获取
+        IAccountDao iAccountDao = sqlSession.getMapper(IAccountDao.class);
+        System.out.println(iAccountDao);
+    }
+
+
 }
