@@ -170,5 +170,39 @@
         left outer join user u on u.roleid = ur.role_number
     </select>
 
+    <resultMap id="orderMap3" type="mybatis.domain.Order">
+        <id column="id" property="goods_id"></id>
+        <result column="goods_name" property="goods_name"></result>
+    </resultMap>
+    <select id="selectOrderByUserId" resultMap="orderMap3" parameterType="int">
+        select * from goods_order where userid = #{id}
+    </select>
+
+    <resultMap id="delayMap" type="mybatis.domain.Account3">
+        <id column="id" property="userId"/>
+        <result property="userName" column="username"/>
+        <result property="userAge" column="age"/>
+        <result property="userBalance" column="balance"/>
+        <result property="userPassword" column="password"/>
+        <result property="address" column="address"/>
+<!--        select： 填写我们要调用的 select 映射的 id-->
+<!--        column ： 填写我们要传递给 select 映射的参数，不是数据库的列名-->
+<!--        select * from goods_order where userid = #{id}-->
+        <collection property="orders"
+                     ofType="mybatis.domain.Order"
+                     select="selectOrderByUserId"
+                     column="id">
+            <id column="id" property="goods_id"></id>
+            <result column="goods_name" property="goods_name"></result>
+        </collection>
+    </resultMap>
+
+    <!--延迟加载-->
+    <select id="selectDelayFindAll" resultMap="delayMap">
+        select * from account
+    </select>
+
+
+
 
 </mapper>

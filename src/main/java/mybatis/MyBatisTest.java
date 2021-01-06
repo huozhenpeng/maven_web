@@ -237,11 +237,25 @@ public class MyBatisTest {
     /**
      * 延迟加载
      * 用户表account   订单表goods_order
-     * 查询所有订单信息，关联查询订单关联的用户信息
+     * 查询所有用户信息，关联查询订单信息
      */
     @Test
     public void testDelayFindAll() {
-        List<Account2> list = accountDao.selectDelayFindAll();
+        List<Account3> list = accountDao.selectDelayFindAll();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i));
+//        }
+    }
+
+    /**
+     * 根据用户id查询订单信息
+     */
+    @Test
+    public void testSelectOrderByUserId() {
+        List<Order> orders = accountDao.selectOrderByUserId(1);
+        for (int i = 0; i < orders.size(); i++) {
+            System.out.println(orders.get(i));
+        }
     }
 
 }

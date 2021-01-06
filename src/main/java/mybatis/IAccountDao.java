@@ -98,5 +98,8 @@ public interface IAccountDao {
      *
      * @return
      */
-    List<Account2> selectDelayFindAll();
+    List<Account3> selectDelayFindAll();
+
+
+    List<Order> selectOrderByUserId(int id);
 }

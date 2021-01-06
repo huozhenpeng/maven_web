@@ -5,7 +5,8 @@
 <configuration>
 
     <settings>
-        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false"/>
         <setting name="logImpl" value="LOG4J" />
     </settings>
 
