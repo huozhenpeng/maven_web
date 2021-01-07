@@ -35,10 +35,16 @@
     </environments>
 
     <mappers>
-        <mapper resource="mybatis/IAccountDao.xml"></mapper>
+<!--        <mapper resource="mybatis/IAccountDao.xml"></mapper>-->
 
         <!--演示注解方式 注意这儿是class-->
 <!--        <mapper class="mybatis.annotation.IAnnotationAccountDao"></mapper>-->
+
+        <!-- 配置 dao 接口的位置，它有两种方式
+            第一种：使用 mapper 标签配置 class 属性
+            第二种：使用 package 标签，直接指定 dao 接口所在的包
+        -->
+        <package name="mybatis.annotation"/>
     </mappers>
 
 </configuration>
