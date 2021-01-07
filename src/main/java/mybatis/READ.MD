@@ -31,5 +31,45 @@ sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 myba
 * 一级缓存应该是无法控制是否生效的，二级缓存可以控制
 
 
+>开启二级缓存
+步骤：
+
+第一步：
+```
+<settings>
+<!-- 开启二级缓存的支持 --> <setting name="cacheEnabled" value="true"/>
+</settings>
+```
+因为 cacheEnabled 的取值默认就为 true，所以这一步可以省略不配置。为 true 代表开启二级缓存；为
+false 代表不开启二级缓存。
+
+第二步：
+配置相关的Mapper映射文件
+```
+<cache>标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <mapper namespace="com.itheima.dao.IUserDao">
+<!-- 开启二级缓存的支持 -->
+<cache></cache>
+</mapper>
+```
+
+第三步：
+设置useCache属性
+```
+<!-- 根据 id 查询 --> 
+<select id="findById" resultType="user" parameterType="int" useCache="true">
+select * from user where id = #{uid}
+</select> 
+将映射文件中的<select>标签中设置 useCache=”true”代表当前这个 statement 要使用
+二级缓存，如果不使用二级缓存可以设置为 false。
+注意：针对每次查询都需要最新的数据 sql，要设置成 useCache=false，禁用二级缓存。
+```
+
+
+
+
 
 

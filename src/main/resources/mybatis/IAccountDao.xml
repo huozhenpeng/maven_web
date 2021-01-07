@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.IAccountDao">
+    <!--开启二级缓存-->
+    <cache></cache>
 
     <resultMap id="accountMap" type="mybatis.domain.Account2">
         <!--主键字段-->
@@ -203,7 +205,7 @@
     </select>
 
 
-    <select id="findCacheById" resultType="mybatis.domain.Account" parameterType="int">
+    <select id="findCacheById" resultType="mybatis.domain.Account" parameterType="int" useCache="true">
         select * from account where id = #{id}
     </select>
 

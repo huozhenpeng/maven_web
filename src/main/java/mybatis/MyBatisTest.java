@@ -281,14 +281,47 @@ public class MyBatisTest {
         Account account = accountDao.findCacheById(1);
         System.out.println(account);
         //可以清空sqlsession中的缓存
-        sqlSession.clearCache();
+//        sqlSession.clearCache();
+//        close之后就不能再用accountDao查找了
+//        sqlSession.close();
         Account account2 = accountDao.findCacheById(1);
         System.out.println(account2);
 
         //accountDao也可以这样获取
         IAccountDao iAccountDao = sqlSession.getMapper(IAccountDao.class);
-        System.out.println(iAccountDao);
+        Account account3 = iAccountDao.findCacheById(1);
+        System.out.println(account3);
     }
 
+
+    /**
+     * 二级缓存
+     * 一级缓存：sqlsession级别的，用的是同一个sqlsession
+     */
+    @Test
+    public void testCache02() {
+        InputStream inputStream = null;
+        try {
+            inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
+
+            SqlSession sqlSession1 = sqlSessionFactory.openSession();
+            IAccountDao iAccountDao = sqlSession1.getMapper(IAccountDao.class);
+            Account account = iAccountDao.findCacheById(1);
+            System.out.println(account);
+            sqlSession1.close();
+
+            SqlSession sqlSession2 = sqlSessionFactory.openSession();
+            IAccountDao iAccountDao2 = sqlSession2.getMapper(IAccountDao.class);
+            Account account2 = iAccountDao2.findCacheById(1);
+            System.out.println(account2);
+            sqlSession2.close();
+
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
