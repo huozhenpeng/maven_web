@@ -77,4 +77,36 @@ public class MyBatisTest02 {
         accountDao.saveAccount2(account2);
         System.out.println(account2.getUserId());
     }
+
+    @Test
+    public void testUpdate() {
+        Account4 account2 = new Account4();
+        account2.setUserId(7);
+        account2.setUserName("lisa1");
+        account2.setAddress("西安市1");
+        account2.setUserAge("30");
+        account2.setUserPassword("123456");
+        account2.setUserBalance("3000");
+        accountDao.updateAccount(account2);
+    }
+
+    @Test
+    public void deleteAccount() {
+        accountDao.deleteAccount(6);
+    }
+
+    @Test
+    public void testTotal() {
+        int total = accountDao.findTotal();
+        System.out.println(total);
+    }
+
+    @Test
+    public void testLikeSelect() {
+        String name = "%张%";
+        List<Account4> accounts = accountDao.findByName(name);;
+        for (int i = 0; i < accounts.size(); i++) {
+            System.out.println(accounts.get(i).toString());
+        }
+    }
 }

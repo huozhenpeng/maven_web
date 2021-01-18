@@ -1,5 +1,6 @@
 package mybatis.annotation;
 
+import mybatis.domain.Account;
 import mybatis.domain.Account2;
 import mybatis.domain.Account4;
 import org.apache.ibatis.annotations.*;
@@ -42,5 +43,39 @@ public interface IAnnotationAccountDao2 {
     @SelectKey(keyColumn = "id", keyProperty = "userId", resultType = Integer.class, before = false, statement = {"select last_insert_id()"})
     int saveAccount2(Account4 account3);
 
+    /**
+     * 更新用户
+     */
+    @Update("update account set username = #{userName}, address = #{address}, age = #{userAge}, balance = #{userBalance}, password = #{userPassword} where id = #{userId}")
+    int updateAccount(Account4 account4);
+
+    /**
+     * 删除用户
+     */
+    @Delete("delete from account where id = #{userId}")
+    int deleteAccount(Integer userId);
+
+    /**
+     * 聚合函数使用
+     */
+    @Select("select count(*) from account")
+    int findTotal();
+
+    /**
+     * 模糊查询
+     */
+    @Results(
+            id = "accountMap2",
+            value = {
+                    @Result(id = true, column = "id", property = "userId"),
+                    @Result(column = "username", property = "userName"),
+                    @Result(column = "balance", property = "userBalance"),
+                    @Result(column = "age", property = "userAge"),
+                    @Result(column = "address", property = "address"),
+                    @Result(column = "password", property = "userPassword")
+            }
+    )
+    @Select("select * from account where username like #{name}")
+    List<Account4> findByName(String name);
 
 }
